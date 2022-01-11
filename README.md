@@ -15,16 +15,16 @@ In this project, I learned espcially how to handle API calls and to extract cert
 ### Screenshots
 Weather dashboard primarly searching weather data for seattle and portland
 
-![website screenshot](./images/CAPTURE.PNG)
-![website screenshot](./images/CAPTURE1.PNG)
-![website screenshot](./images/CAPTURE2.PNG)
-![website screenshot](./images/CAPTURE3.PNG)
+![website screenshot](./images/Capture.PNG)
+![website screenshot](./images/Capture1.PNG)
+![website screenshot](./images/Capture2.PNG)
+![website screenshot](./images/Capture3.PNG)
 
 Page layout after the page is refreshed
-![website screenshot](./images/CAPTURE4.PNG)
+![website screenshot](./images/Capture4.PNG)
 
 ### Website link
-https://truont2.github.io/Password_Generator/
+https://truont2.github.io/Weather-App/
 
 ### Resources
 * https://openweathermap.org/api/one-call-api#data
