@@ -15,86 +15,86 @@
         <h2>Weather Dashboard</h2>
     </header>
 
+    <!-- main content -->
     <main class="container-fluid d-flex row gap-2">
         <!-- div for the form  -->
         <div class=" col-12 col-md-2 mt-4 ">
             <form>
-                <!-- Email input -->
+                <!-- City input Area-->
                 <div class="form-outline mb-4">
-                    <label class="form-label mb-1 large-font-search" for="form1Example1"><strong>Search for a City:</strong></label>
+                    <label class="form-label mb-1 large-font-search"><strong>Search for a City:</strong></label>
                     <input type="text" id="input-city" class="form-control" placeholder="city" required/>
                 </div>
               
-                <!-- Submit button -->
+                <!-- Search button -->
                 <button type="button" class="btn btn-primary col-12 bg-secondary" id="searchBtn">Search</button>
               </form>
 
+              <!-- separation line -->
               <hr />
 
+              <!-- for list of past search buttons -->
               <div class="list-group"></div>
         </div>
 
+        <!-- main page content containing weather data  -->
         <div class="card col-9 border d-flex flex-column m-5 d-none">
-            
-            <div class="container my-3 border col-11">
-              <strong><p><span class="large-font" id="City"></span> <span class="large-font" id="timetext"></span><img class="currentWeather"src="" alt="weather status"></p></strong>
-              <p >Temp: <span id="temp"></span> °F</p>
-              <p>Wind: <span id="wind"></span> MPH</p>
-              <p>Humidity: <span id="Humidity"></span> %</p>
-              <p>UV Index: <span id="UV"></span></p>
-            </div>
-            
-            <section class="container my-3 ">
-              <h3>5-Day Forcast</h3>
-                <div class="row justify-content-evenly">
 
-                  <div class="col-12 col-md-6 col-lg-2 m-2 bg-secondary rounded day">
-                    <h3 id="day-1">Title</h3>
-                    <img id="icon-1"src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather status">
-                    <p>Temp: <span id="temp-1"></span> °F</p>
-                    <p>Wind: <span id="wind-1"></span> MPH</p>
-                    <p>Humidity: <span id="hum-1"></span> %</p>
-                  </div>
+          <!-- This section is for the current weather data -->
+          <section class="container my-3 border col-11">
+            <strong><p><span class="large-font" id="City"></span> <span class="large-font" id="timetext"></span><img class="currentWeather"src="" alt="weather status"></p></strong>
+            <p >Temp: <span id="temp"></span> °F</p>
+            <p>Wind: <span id="wind"></span> MPH</p>
+            <p>Humidity: <span id="Humidity"></span> %</p>
+            <p>UV Index: <span id="UV"></span></p>
+          </section>
+          
+          <!-- seciton for forcast data -->
+          <section class="container my-3 ">
+            <h3>5-Day Forcast</h3>
+              <div class="row justify-content-evenly">
 
-                  <div class="col-12 col-md-6 col-lg-2 m-2 bg-secondary rounded day">
-                    <h3 id="day-2">Title</h3>
-                    <img id="icon-2" src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather status">
-                    <p>Temp: <span id="temp-2"></span> °F</p>
-                    <p>Wind: <span id="wind-2"></span> MPH</p>
-                    <p>Humidity: <span id="hum-2"></span> %</p>
-                  </div>
-                  <div class="col-12 col-md-6 col-lg-2 m-2 bg-secondary rounded day">
-                    <h3 id="day-3">Title</h3>
-                    <img id="icon-3" src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather status">
-                    <p>Temp: <span id="temp-3"></span> °F</p>
-                    <p>Wind: <span id="wind-3"></span> MPH</p>
-                    <p>Humidity: <span id="hum-3"></span> %</p>
-                  </div>
-                  <div class="col-12 col-md-6 col-lg-2 m-2 bg-secondary rounded day">
-                    <h3 id="day-4">Title</h3>
-                    <img id="icon-4" src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather status">
-                    <p>Temp: <span id="temp-4"></span> °F</p>
-                    <p>Wind: <span id="wind-4"></span> MPH</p>
-                    <p>Humidity: <span id="hum-4"></span> %</p>
-                  </div>
-                  <div class="col-12 col-md-6 col-lg-2 m-2 bg-secondary rounded day">
-                    <h3 id="day-5">Title</h3>
-                    <img id="icon-5" src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather status">
-                    <p>Temp: <span id="temp-5"></span> °F</p>
-                    <p>Wind: <span id="wind-5"></span> MPH</p>
-                    <p>Humidity: <span id="hum-5"></span> %</p>
-                  </div>
+                <div class="col-12 col-md-6 col-lg-2 m-2 bg-secondary rounded day">
+                  <h3 id="day-1">Title</h3>
+                  <img id="icon-1"src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather status">
+                  <p>Temp: <span id="temp-1"></span> °F</p>
+                  <p>Wind: <span id="wind-1"></span> MPH</p>
+                  <p>Humidity: <span id="hum-1"></span> %</p>
                 </div>
-              </section>
+
+                <div class="col-12 col-md-6 col-lg-2 m-2 bg-secondary rounded day">
+                  <h3 id="day-2">Title</h3>
+                  <img id="icon-2" src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather status">
+                  <p>Temp: <span id="temp-2"></span> °F</p>
+                  <p>Wind: <span id="wind-2"></span> MPH</p>
+                  <p>Humidity: <span id="hum-2"></span> %</p>
+                </div>
+                <div class="col-12 col-md-6 col-lg-2 m-2 bg-secondary rounded day">
+                  <h3 id="day-3">Title</h3>
+                  <img id="icon-3" src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather status">
+                  <p>Temp: <span id="temp-3"></span> °F</p>
+                  <p>Wind: <span id="wind-3"></span> MPH</p>
+                  <p>Humidity: <span id="hum-3"></span> %</p>
+                </div>
+                <div class="col-12 col-md-6 col-lg-2 m-2 bg-secondary rounded day">
+                  <h3 id="day-4">Title</h3>
+                  <img id="icon-4" src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather status">
+                  <p>Temp: <span id="temp-4"></span> °F</p>
+                  <p>Wind: <span id="wind-4"></span> MPH</p>
+                  <p>Humidity: <span id="hum-4"></span> %</p>
+                </div>
+                <div class="col-12 col-md-6 col-lg-2 m-2 bg-secondary rounded day">
+                  <h3 id="day-5">Title</h3>
+                  <img id="icon-5" src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather status">
+                  <p>Temp: <span id="temp-5"></span> °F</p>
+                  <p>Wind: <span id="wind-5"></span> MPH</p>
+                  <p>Humidity: <span id="hum-5"></span> %</p>
+                </div>
+              </div>
+            </section>
         </div>
-
-        
-        
-        
-           
-
-
     </main>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./script.js"></script>
