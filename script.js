@@ -8,49 +8,63 @@ var humidity = document.querySelector("#Humidity");
 var UV = document.querySelector("#UV");
 var card = document.querySelector(".card");
 var searchedList = document.querySelector(".list-group");
-var searched = {};
-
+var searched = [];
+var cityInput = document.querySelector("#input-city")
+var API_ID = "b4e6fa354a73f1aeaf066627b2946d4c";
 // card sections
-
 var cards = document.querySelectorAll(".day");
+
 // later remove class d-none from  weather section
-searchButton.addEventListener("click", fetchWeather); 
-var inputCity = document.querySelector("#input-city");
+// searchButton.addEventListener("click", fetchWeather); 
+searchButton.addEventListener('click', thing);
+
+searchedList.addEventListener('click', function(event) {
+    if(event.target.matches('.previous')){
+        fetchWeather(event.target.textContent)
+    }
+})
+
+
+function thing(event) {
+    event.preventDefault();
+    let city = cityInput.value.trim();
+
+    fetchWeather(city);
+}
 
 // function to load past search
-function fetchWeather() {
-
-    var city = document.querySelector("#input-city").value.trim();
-    var API_ID = "b4e6fa354a73f1aeaf066627b2946d4c";
-    var input = inputCity.value.trim();
-
-    if( input === "") {
-        console.log(input);
-        return;
-    } else {
-        card.classList.remove("d-none");
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_ID}`)
-        .then(function(response) {
+function fetchWeather(city) {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_ID}`)
+    .then(function(response) {
+        console.log(city);
+        if (response.status < 400 && city !== '') {
             return response.json();
+        } else {
+            return;
+        }
+        
+    })
+    .then(function(data) {
+        card.classList.remove("d-none");
+        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&exclude=minutely,hourly,alerts&appid=${API_ID}`)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data1) {
+                cityname.textContent = data["name"];
+                timeText.textContent = moment().format('l');
+                renderCurrentWeather(data1);
+                renderForcastWeather(data1);
+            })
         })
-        .then(function(data) {
-            cityname.textContent = data["name"];
-            timeText.textContent = moment().format('l');
-            fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&exclude=minutely,hourly,alerts&appid=${API_ID}`)
-                .then(function(response) {
-                    return response.json();
-                })
-                .then(function(data1) {
-                    console.log(data1);
-                    renderCurrentWeather(data1);
-                    renderForcastWeather(data1);
-                    storeSearched(data["name"]);
-                })
-        })
+        cityInput.value = ''
+        if(!searched.includes(city) && city !== ''){
+            searched.push(city)
+            localStorage.setItem('cities', JSON.stringify(searched))
+            storage()
     }
-
-    
 }
+
 
 function renderCurrentWeather(data) {
     let icon = data.current.weather[0].icon;
@@ -59,8 +73,6 @@ function renderCurrentWeather(data) {
     wind.textContent = data.current.wind_speed;
     humidity.textContent = data.current.humidity;
     UV.textContent = data.current.uvi;
-
-
 }
 
 
@@ -82,51 +94,26 @@ function renderForcastWeather(data) {
     }
 }
 
-// create an object that stores the longitude and latitude of each city by its name or the name itself 
-function storeSearched(cityName) {
-    var q = 0;
-    var searchedCity = document.createElement("button");
-    searchedCity.textContent = cityName;
-    searchedCity.classList.add("btn", "btn-secondary", "mb-3");
-    searchedCity.setAttribute("type", "button");
-    searchedCity.setAttribute("data-index", q);
-    searchedList.appendChild(searchedCity);
-    q++;
+function storage() {
+    searchedList.textContent = '';
+    container = JSON.parse(localStorage.getItem('cities'));
+    console.log(container);
+    container.map( item => {
+        if(item !== '') {
+            let li = document.createElement('button');
+            li.setAttribute('class', 'btn btn-outline bg-secondary text-light col-12 previous my-2');
+            li.textContent = item;
+            searchedList.append(li);
+        }     
+    })
 
-    searched[cityName] = cityName;
-    localStoring();
+    renderLastCity();
 }
 
-function localStoring() {
-    localStorage.setItem("cities", JSON.stringify(searched));
+storage();
+
+function renderLastCity() {
+    let lastCityIndex = container.length - 1;
+    let lastCity = container[lastCityIndex];
 }
 
-// if button is clicked, we grab its textvalue and use it to grab the corrosponding city name to load up the page data
-// seems like stored data is only the most recent search 
-// buttons are stored as well. 
-
-function renderStored() {
-    var q = 0;
-    for(const key in searched) {
-        var searchedCity = document.createElement("button");
-        searchedCity.textContent = key;
-        searchedCity.classList.add("btn", "btn-secondary", "mb-3");
-        searchedCity.setAttribute("type", "button");
-        searchedCity.setAttribute("data-index", q);
-        searchedList.appendChild(searchedCity);
-        q++;
-    }
-}
-
-function init() {
-    var storedCities = JSON.parse(localStorage.getItem("cities"));
-
-    if (storedCities !== null) {
-        searched = storedCities;
-    }
-
-    renderStored();
-}
-
-init();
-console.log(searched);

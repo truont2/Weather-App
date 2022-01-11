@@ -12,10 +12,31 @@ header {
     color: white;
 }
 
-.large-font {
+.large-font-search {
     font-size: 30px;
 }
 
 .hide {
     display: none;
+}
+
+.currentWeather {
+    width: 45px;
+    height: 45px;
+}
+
+.large-font{
+    font-size: 35px;
+}
+
+img {
+    margin-bottom: 16px;
+}
+
+.bg-secondary {
+    background: linear-gradient(90deg, rgb(142, 142, 228) 0%, rgb(86, 86, 247));
+}
+
+.day > p, h3{
+    color: white;
 }
